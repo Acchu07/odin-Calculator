@@ -1,0 +1,37 @@
+function getAddition(valueFirst, valueSecond) {
+  return valueFirst + valueSecond;
+}
+
+function getSubtraction(valueFirst, valueSecond) {
+  return valueFirst - valueSecond;
+}
+
+function getMultiplication(valueFirst, valueSecond) {
+  return valueFirst * valueSecond;
+}
+
+function getDivision(valueFirst, valueSecond) {
+  return valueFirst / valueSecond;
+}
+
+function doOperation(userInput,userInput2,userInput3){
+    switch (userInput2) {
+      case "+":
+        console.log(getAddition(userInput, userInput3));
+        break;
+      case "-":
+        console.log(getSubtraction(userInput, userInput3));
+        break;
+      case "*":
+        console.log(getMultiplication(userInput, userInput3));
+        break;
+      case "/":
+        console.log(getDivision(userInput, userInput3));
+        break;
+    }
+}
+
+let userInput = +prompt("Enter a number");
+let userInput2 = prompt("Enter a Symbol");
+let userInput3 = +prompt("Enter a Symbol");
+doOperation(userInput,userInput2,userInput3);
