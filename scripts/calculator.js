@@ -24,7 +24,7 @@ function doOperation(userInput, userInput2, userInput3)
   {
     case "+":
       return getAddition(userInput, userInput3);
-      //  bCanChange = false; // Test but to implement towards the end
+    //  bCanChange = false; // Test but to implement towards the end
 
     case "-":
       return getSubtraction(userInput, userInput3);
@@ -42,21 +42,26 @@ function updateDisplay(value)
   display.innerText = value;
 }
 
-function updateTotal(value=0){
+function updateTotal(value = 0)
+{
   userInput = parseInt(userInput);
   userInput3 = parseInt(userInput3);
+  if (total === null)
+  {
+    total = doOperation(userInput, userInput2, userInput3);
+    updateDisplay(total);
+  }
   console.log(`Logging
   UserInput: ${userInput} TypeOf: ${typeof userInput}
   UserInput2: ${userInput2} TypeOf: ${typeof userInput2}
-  UserInput3: ${userInput3} TypeOf: ${typeof userInput3} `)
-  total = doOperation(userInput,userInput2,userInput3);
-  updateDisplay(total);
+  UserInput3: ${userInput3} TypeOf: ${typeof userInput3} 
+  Total Is: ${total} TypeOf: ${typeof total}  `)
 
 }
 
 function updateUserInput(value)
 {
-  if (bChangeUserInput)
+  if (!userInput2)
   {
     if (userInput === null)
     {
@@ -89,25 +94,25 @@ function resetEverything()
   userInput3 = null;
   bChangeUserInput = true;
   total = null;
+  updateDisplay(0);
 }
 
 let userInput = null;
 let userInput2 = null;
 let userInput3 = null;
 let total = null;
-// let bCanChange = true;
-let bChangeUserInput = true;
 const buttonNumbers = document.querySelectorAll(".number");
 const buttonOperators = document.querySelectorAll(".operator");
 const buttonEqual = document.querySelector(".equal");
 const display = document.querySelector(".display");
+const buttonClear = document.querySelector(".clear");
 
 buttonOperators.forEach((element) =>
   element.addEventListener("click", (eventObject) =>
   {
-    bChangeUserInput = false;
     userInput2 = eventObject.target.innerText;
     updateDisplay(userInput2);
+    return;
   })
 );
 
@@ -119,5 +124,6 @@ buttonNumbers.forEach((element) =>
 );
 
 buttonEqual.addEventListener('click', updateTotal);
+buttonClear.addEventListener('click', resetEverything)
 
 // Possible to push into array and iterate over array executing logic once equal is pressed? Try at end if time
