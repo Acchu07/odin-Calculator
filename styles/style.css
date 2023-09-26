@@ -16,3 +16,19 @@ button{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
 }
+
+.container{
+    border: 5px solid orange;
+}
+
+.row{
+    border: 3px solid orange;
+    padding: 2px;
+}
+
+.display{
+    font-size: 50px;
+    border: 3px solid orange;
+    display: flex;
+    justify-content: end;
+}
