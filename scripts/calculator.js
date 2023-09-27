@@ -24,7 +24,6 @@ function doOperation(userInput, userInput2, userInput3)
   {
     case "+":
       return getAddition(userInput, userInput3);
-    //  bCanChange = false; // Test but to implement towards the end
 
     case "-":
       return getSubtraction(userInput, userInput3);
@@ -49,6 +48,11 @@ function updateTotal(value = 0)
   if (total === null)
   {
     total = doOperation(userInput, userInput2, userInput3);
+    updateDisplay(total);
+  }
+  else
+  {
+    total = doOperation(total, userInput2, userInput3);
     updateDisplay(total);
   }
   console.log(`Logging
@@ -112,7 +116,11 @@ buttonOperators.forEach((element) =>
   {
     userInput2 = eventObject.target.innerText;
     updateDisplay(userInput2);
-    return;
+    if (userInput3)
+    {
+      updateTotal();
+      userInput3 = null;
+    }
   })
 );
 
@@ -120,10 +128,17 @@ buttonNumbers.forEach((element) =>
   element.addEventListener("click", (eventObject) =>
   {
     updateUserInput(eventObject.target.innerText);
+    // if(userInput3){
+    //   updateTotal();
+    //   userInput3 = null;
+    // }
   })
 );
 
-buttonEqual.addEventListener('click', updateTotal);
+buttonEqual.addEventListener('click', () =>
+{
+  updateTotal();
+});
 buttonClear.addEventListener('click', resetEverything)
 
 // Possible to push into array and iterate over array executing logic once equal is pressed? Try at end if time
